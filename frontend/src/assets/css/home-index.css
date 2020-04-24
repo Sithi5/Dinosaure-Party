@@ -1,0 +1,148 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.masthead {
+    text-align: center;
+    color: #fff;
+    background-image: url(../images/koople-mypic2.jpg);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+}
+
+.btn-register {
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    background-color: rgb(224, 43, 200);
+}
+
+.btn-register:hover {
+    background-color: rgb(161, 25, 214);
+}
+
+.index-section-1 {
+    background: #fff;
+    padding-top: 6%;
+    margin: 0;
+}
+
+.index-section-1-div-1 {
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+
+.index-section-ready-now {
+    background: rgb(83, 70, 87);
+    margin-top: 5%;
+}
+
+.btn-rounded {
+    border-radius: 20%;
+}
+
+.text-start-meeting {
+    margin-right: 2rem;
+    margin-bottom: 0;
+    margin-left: 2rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.content-start-meeting {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+header.masthead .intro-text {
+    padding-top: 150px;
+    padding-bottom: 100px;
+}
+
+header.masthead .intro-text .intro-lead-in {
+    font-size: 22px;
+    font-style: italic;
+    line-height: 22px;
+    margin-bottom: 25px;
+    cursor: default;
+}
+
+header.masthead .intro-text .intro-heading {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 50px;
+    margin-bottom: 25px;
+    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+    cursor: default;
+}
+
+.Text-White {
+    color: white;
+}
+
+.Text-Pink {
+    color: rgb(17, 216, 27) !important;
+}
+
+.h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0;
+    padding-bottom: 1%;
+}
+
+.h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: normal;
+    padding-bottom: 0%;
+    color: rgb(59, 59, 59);
+}
+
+p {
+    font-size: .9375rem;
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(66, 66, 66);
+    font-weight: 600;
+}
+
+@media (min-width: 768px) {
+    header.masthead .intro-text {
+        padding-top: 300px;
+        padding-bottom: 200px;
+    }
+    header.masthead .intro-text .intro-lead-in {
+        font-size: 40px;
+        line-height: 40px;
+    }
+    header.masthead .intro-text .intro-heading {
+        font-size: 75px;
+        line-height: 75px;
+        margin-bottom: 50px;
+    }
+    .h2 {
+        font-size: 2rem;
+    }
+    .h3 {
+        font-size: 1.25rem;
+    }
+}

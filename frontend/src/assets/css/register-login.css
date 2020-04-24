@@ -1,0 +1,140 @@
+.card-register {
+    margin-top: 5%;
+    border-radius: 5%;
+}
+
+.form-content {
+    padding: 5%;
+    border: 1px solid #ced4da;
+    margin-bottom: 2%;
+}
+
+.form-row {
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+
+.form-group {
+    text-align: center;
+}
+
+.form-control {
+    border-radius: 1.5rem;
+}
+
+.btnSubmit {
+    border: none;
+    border-radius: 1.5rem;
+    padding: 1%;
+    width: 20%;
+    cursor: pointer;
+    color: #fff;
+    background-color: rgb(224, 43, 200);
+}
+
+.card-register strong {
+    color: white;
+}
+
+.btnSubmit:hover {
+    background-color: rgb(161, 25, 214);
+}
+
+#registration_form_submit {
+    margin-bottom: 5% !important;
+    margin-top: 5% !important;
+}
+
+#login_form_submit {
+    margin-bottom: 5% !important;
+}
+
+.info-color {
+    background-color: rgb(3, 100, 24) !important;
+}
+
+.form-part {
+    position: relative;
+}
+
+.form-margin {
+    margin-top: 4%;
+}
+
+label {
+    color: rgb(3, 100, 24) !important;
+}
+
+select,
+input {
+    border-color: rgb(209, 186, 204) !important;
+}
+
+.form-birthdate label,
+.form-gender label {
+    margin-top: 4%;
+}
+
+
+/* Label float */
+
+
+/* ----------------- */
+
+
+/* You can use "input ~ label" selector too */
+
+input+label {
+    position: absolute;
+    left: 40px;
+    top: 13%;
+    transition: transform 200ms ease;
+    /* You have to use this to make it clickable through*/
+    pointer-events: none;
+}
+
+input:focus+label,
+input+label.freeze {
+    font-size: 0.7em;
+    font-weight: 400;
+    /* Use "Translate" function instead of classic positioning for better performance */
+    transform: translateY(-120%);
+}
+
+.force-label-top {
+    position: absolute;
+    left: 40px;
+    top: 13%;
+    transition: transform 200ms ease;
+    /* You have to use this to make it clickable through*/
+    pointer-events: none;
+    font-size: 0.7em;
+    font-weight: 400;
+    /* Use "Translate" function instead of classic positioning for better performance */
+    transform: translateY(-150%);
+}
+
+
+/* date picker */
+
+.date-dropdowns input {
+    display: none;
+}
+
+.date-dropdowns select.year,
+.date-dropdowns select.month,
+.date-dropdowns select.day {
+    color: rgb(224, 43, 200);
+    margin-right: 2%;
+    margin-top: 2%;
+    padding: .5rem;
+    border-radius: .5rem;
+    border-color: rgb(209, 186, 204);
+}
+
+
+/*form error*/
+
+.form-error {
+    color: red;
+}

@@ -1,0 +1,37 @@
+<div class="container register-form">
+    <div class="text-center" style="color: #757575;">
+        <div class="card-register">
+            <h5 class="card-header info-color white-text text-center py-4">
+                <strong>Connecte toi, petit dinosaure</strong>
+            </h5>
+            <div class="card-body px-lg-5 pt-0">
+                <form (submit)="login()">
+
+                    <div class="form-margin">
+                        <div class="form-part label-float">
+                            <label for="login">Votre login</label>
+                            <input type="text" class="form-control" name="login" placeholder="Votre login" [(ngModel)]="credentials.login">
+
+                            <div class="form-error">
+                            </div>
+                        </div>
+                        <label for="password">Votre mot de passe</label>
+                        <br>
+                        <div class="form-part label-float">
+
+                            <input type="password" class="form-control" name="password" placeholder="Votre mot de passe" [(ngModel)]="credentials.password">
+
+
+                        </div>
+                    </div>
+                    <div class="form-error">
+                        <p>{{ error.server }}</p>
+                    </div>
+                    <button type="submit" class="btn btn-success">Se connecter!</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

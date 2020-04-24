@@ -1,0 +1,128 @@
+.nav-btn-sign-in,
+.nav-btn-loggout,
+.nav-btn-sign-out {
+    text-decoration: underline;
+}
+
+.nav-link-green {
+    color: rgb(66, 66, 66) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .9375rem;
+    font-weight: 600;
+}
+
+.nav-link-green-first {
+    color: rgb(66, 66, 66) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .9375rem;
+    font-weight: 600;
+}
+
+.nav-link-green-first:hover,
+.nav-link-green:hover,
+.nav-link-admin:hover {
+    color: rgb(17, 216, 27) !important;
+}
+
+.nav-link-admin {
+    color: rgb(201, 51, 51) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .9375rem;
+    font-weight: 600;
+}
+
+.img-dropdown-toggle {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.img-card-body {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin: auto auto 13px;
+    position: relative;
+}
+
+.dropdown {
+    transition: opacity 0.25s, top 0s, margin-top 0.25s;
+}
+
+.dropdown-menu {
+    position: absolute !important;
+    box-shadow: 7px 3px 3px 0px rgb(66, 66, 66);
+    border-radius: 10%;
+    max-width: 286px;
+    top: 100%;
+    right: 0;
+    left: auto;
+    background-color: #f8f9fa !important;
+    border: none !important;
+    font-size: 15px;
+    text-align: left;
+    list-style: none;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.card-user {
+    border: none;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.text-user-card,
+.text-user-card-title {
+    color: rgb(66, 66, 66) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .9375rem;
+    font-weight: 600;
+}
+
+.text-danger {
+    color: red !important;
+}
+
+.text-user-card-title {
+    font-size: 1.5rem;
+}
+
+.card-user .card-body {
+    padding: 11px 33px;
+}
+
+.menu-user {
+    width: 200px;
+    margin: auto;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    margin-top: 0;
+}
+
+.social-fake-button {
+    border-color: #3b5998;
+    background: transparent;
+}
+
+.header-card-div {
+    width: 100%;
+}
+
+.card-body {
+    padding: 0;
+    background-color: #f8f9fa !important;
+}
+
+@media (min-width: 992px) {
+    .nav-link-green-first {
+        margin-left: 1rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .dropdown-menu {
+        left: 0;
+    }
+}
