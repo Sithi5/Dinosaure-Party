@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService} from '../../services/auth.service';
+import { AuthService, UserDetails} from '../../services/auth.service';
 
 @Component({
   selector: 'app-list',
@@ -8,9 +8,15 @@ import { AuthService} from '../../services/auth.service';
 })
 export class ListComponent implements OnInit {
 
+  users: UserDetails[];
   constructor(public auth: AuthService) { }
 
   ngOnInit(): void {
+    this.auth.getAllUsers().subscribe(users => {
+      this.users = users;
+    }, (err) => {
+      console.error(err);
+    });
   }
 
 }

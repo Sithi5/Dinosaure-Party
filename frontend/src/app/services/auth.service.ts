@@ -98,7 +98,11 @@ export class AuthService {
     return this.request('post', '/auth/signin', user);
   }
 
-  public profile(): Observable<any> {
+  public getUser(id): Observable<any> {
     return this.request('get', '/users/' + this.getUserDetails()._id);
+  }
+
+  public getAllUsers(): Observable<any> {
+    return this.request('get', '/users/');
   }
 }

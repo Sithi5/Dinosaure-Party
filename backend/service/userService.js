@@ -109,9 +109,6 @@ function register(req, res) {
 };
 
 function getOneUser(req, res) {
-    if (checkIfAdmin(req, res) !== true && checkIfSameUser(req, res) !== true) {
-        return sendError(req, res, 'you can\'t see this content');
-    }
     if (!ObjectId.isValid(req.params.id)) {
         return (res.status(400).send('No record with given id : ' + req.params.id));
     }
@@ -123,9 +120,6 @@ function getOneUser(req, res) {
 };
 
 function getAllUsers(req, res) {
-    if (checkIfAdmin(req, res) !== true) {
-        return sendError(req, res, 'you need to be admin to see this.');
-    }
     User.find((err, docs) => {
         if (err) {
             return sendError(req, res, err);

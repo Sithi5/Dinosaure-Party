@@ -1,2 +1,9 @@
 <p *ngIf="!auth.isLoggedIn()">Vous devez vous connecter pour voir les autres dinosaures</p>
-<p *ngIf="auth.isLoggedIn()">Pas de dinausaures en vue</p>
+<p *ngIf="auth.isLoggedIn() && !users">Pas de dinausaures en vue</p>
+<div *ngIf="auth.isLoggedIn() && users">
+    <div *ngFor="let user of users; let index = index">
+        <span>{{ index }}</span>
+        <span>:</span>
+        <span>{{ user.login }}</span>
+    </div>
+</div>
