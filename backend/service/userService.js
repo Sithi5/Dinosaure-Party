@@ -119,6 +119,8 @@ function getOneUser(req, res) {
     });
 };
 
+
+
 function getAllUsers(req, res) {
     User.find((err, docs) => {
         if (err) {
@@ -156,16 +158,25 @@ function deleteAllUsers(req, res) {
 }
 
 function updateOneUser(req, res) {
+    console.log(req.body);
     if (checkIfAdmin(req, res) !== true && checkIfSameUser(req, res) !== true) {
         return sendError(req, res, 'you can\'t edit this content');
     }
     if (!ObjectId.isValid(req.params.id)) {
         return (res.status(400).send('No record with given id : ' + req.params.id));
     }
+
     User.findById(req.params.id, (err, docs) => {
         if (err) { return sendError(req, res, err); } else {
             var user = docs;
-            userHydrate(user, req);
+            if (!user.validPassword(req.body.checkPassword)) {
+                return sendError(req, res, 'incorrect password !', 'checkPassword');
+            }
+            //check if user want a new password or not
+            !req.body.password ? req.body.password = req.body.checkPassword : 0;
+            if ((err = userHydrate(user, req)) !== null) {
+                return sendError(req, res, err, 'password');
+            }
             user.save(function(err) {
                 if (err) {
                     return sendError(req, res, err);

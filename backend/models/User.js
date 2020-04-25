@@ -79,10 +79,7 @@ userSchema.methods.generateJwt = function() {
 
     return jwt.sign({
         _id: this._id,
-        username: this.login,
-        age: this.age,
-        family: this.family,
-        admin: this.admin,
+        login: this.login,
         exp: parseInt(expiry.getTime() / 1000),
     }, process.env.SECRET);
 }

@@ -1,10 +1,86 @@
-<div class="form-horizontal">
-    <div class="form-group">
-        <label class="col-sm-3 control-label">login</label>
-        <p class="form-control-static">{{ user?.login }}</p>
+<div *ngIf="!user">
+    <p>chargement du profil</p>
+</div>
+<div *ngIf="!editable && user">
+    <div class="container register-form">
+        <div class="text-center" style="color: #757575;">
+            <div class="card-register">
+                <h5 class="card-header info-color white-text text-center py-4">
+                    <strong>Ton profil</strong>
+                </h5>
+                <div class="card-body px-lg-5 pt-0">
+                    <div class="list-group">
+                        <p *ngIf="user._id">Ton id : {{ user._id}}</p>
+                    </div>
+                    <div class="list-group">
+                        <p>Ton login : {{ user.login}}</p>
+                    </div>
+                    <div class="list-group">
+                        <p *ngIf="user.family">Ta famille : {{ user.family}}</p>
+                    </div>
+                    <div class="list-group">
+                        <p *ngIf="user.age">Ton age : {{ user.age}}</p>
+                    </div>
+                    <div class="list-group">
+                        <p *ngIf="user.food">La nourriture que tu aime : {{ user.food}}</p>
+                    </div>
+                    <button type="submit" class="btn btn-danger" (click)="editable=true;">Modifier mon profil</button>
+
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label class="col-sm-3 control-label">id</label>
-        <p class="form-control-static">{{ user?._id }}</p>
+</div>
+
+
+
+<div *ngIf="editable">
+    <div class="container register-form">
+        <div class="text-center" style="color: #757575;">
+            <div class="card-register">
+                <h5 class="card-header info-color white-text text-center py-4">
+                    <strong>Edition du profil</strong>
+                </h5>
+
+                <div class="card-body px-lg-5 pt-0">
+                    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+                        <div class="form-margin">
+                            <div class="form-part label-float">
+                                <label for="login">Login:</label>
+                                <input type="text" formControlName="login" placeholder="login" name="login" class="form-control" id="login">
+
+                                <div class="form-error">
+                                    <p>{{ error.login }}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-part label-float">
+
+                                <label for="checkPassword">Votre mot de passe:</label>
+                                <input type="password" formControlName="checkPassword" placeholder="mot de passe" name="checkPassword" class="form-control" id="checkPassword">
+                                <div class="form-error">
+                                    <p>{{ error.checkPassword }}</p>
+                                </div>
+                            </div>
+                            <div class="form-part label-float">
+                                <label for="password">Votre nouveau mot de passe:</label>
+                                <input type="password" formControlName="password" placeholder="Nouveau mot de passe" name="password" class="form-control" id="password">
+
+                                <div class="form-error">
+                                    <p>{{ error.password }}</p>
+                                </div>
+                            </div>
+                            <div class="form-part label-float">
+                                <label for="age">Age:</label>
+                                <input type="number" formControlName="age" placeholder="age" name="age" class="form-control" id="age">
+                            </div>
+
+                        </div>
+                        <button type="submit" class="btn btn-danger" (click)="editable=false;">Voir mon profil</button>
+                        <button class="btn btn-success">Enregistrer changement</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

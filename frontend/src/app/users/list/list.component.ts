@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, UserDetails} from '../../services/auth.service';
+import { AuthService} from '../../services/auth.service';
+import { User } from "../../models/user.model";
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-list',
@@ -8,15 +10,39 @@ import { AuthService, UserDetails} from '../../services/auth.service';
 })
 export class ListComponent implements OnInit {
 
-  users: UserDetails[];
-  constructor(public auth: AuthService) { }
+  user: User;
+  users: User[];
+  friends: User[];
+  constructor(public usersService: UsersService, public authService: AuthService) { }
 
   ngOnInit(): void {
-    this.auth.getAllUsers().subscribe(users => {
+    this.usersService.getUserById(this.authService.getUserDetails()._id).subscribe(user => {
+      this.user = user;
+     console.log(user._id);
+    }, (err) => {
+      console.error(err);
+    });
+    this.usersService.getAllUsers().subscribe(users => {
+
       this.users = users;
     }, (err) => {
       console.error(err);
     });
+  }
+
+  isOthersUsersAndNotFriend(user)
+  {
+    this.user.friends.forEach(friend => {
+      if (user._id !== friend._id)
+    {
+      return true;
+    }
+    });
+    if (user._id !== this.user._id)
+    {
+      return true;
+    }
+    return false;
   }
 
 }

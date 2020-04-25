@@ -3,13 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators/';
 import { Router } from '@angular/router';
-
-export interface UserDetails {
-  _id: string;
-  login: string;
-  exp: number;
-  iat: number;
-}
+import { promise } from 'protractor';
+import { User } from "../models/user.model";
 
 interface TokenResponse {
   token: string;
@@ -33,7 +28,7 @@ export class AuthService {
     this.token = token;
   }
 
-  private getToken(): string {
+  public getToken(): string {
     if (!this.token) {
       this.token = localStorage.getItem('mean-token');
     }
@@ -46,7 +41,7 @@ export class AuthService {
     this.router.navigateByUrl('/');
   }
 
-  public getUserDetails(): UserDetails {
+  public getUserDetails(): User {
     const token = this.getToken();
     let payload;
     if (token) {

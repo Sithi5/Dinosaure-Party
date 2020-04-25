@@ -1,9 +1,28 @@
-<p *ngIf="!auth.isLoggedIn()">Vous devez vous connecter pour voir les autres dinosaures</p>
-<p *ngIf="auth.isLoggedIn() && !users">Pas de dinausaures en vue</p>
-<div *ngIf="auth.isLoggedIn() && users">
+<p *ngIf="!authService.isLoggedIn()">Vous devez vous connecter pour voir les autres dinosaures</p>
+<p *ngIf="authService.isLoggedIn() && !users">Pas de dinausaures en vue</p>
+<div *ngIf="authService.isLoggedIn() && users">
     <div *ngFor="let user of users; let index = index">
-        <span>{{ index }}</span>
-        <span>:</span>
-        <span>{{ user.login }}</span>
+        <div *ngIf="isOthersUsersAndNotFriend(user)">
+            <div class="container register-form">
+                <div class="text-center" style="color: #757575;">
+                    <div class="card-register">
+                        <div class="card-body px-lg-5 pt-0">
+                            <div class="list-group">
+                                <p>login : {{ user.login}}</p>
+                            </div>
+                            <div class="list-group">
+                                <p *ngIf="user.family">famille : {{ user.family}}</p>
+                            </div>
+                            <div class="list-group">
+                                <p *ngIf="user.age">age : {{ user.age}}</p>
+                            </div>
+                            <div class="list-group">
+                                <p *ngIf="user.food">La nourriture qu'il aime : {{ user.food}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, UserDetails } from '../../services/auth.service';
+import { UsersService } from '../../services/users.service';
+import { User } from "../../models/user.model";
+import { AuthService } from 'src/app/services/auth.service';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-profile',
@@ -7,15 +10,48 @@ import { AuthService, UserDetails } from '../../services/auth.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  user: UserDetails;
+  user: User;
+  editable: boolean = false;
+  editForm: FormGroup;
 
-  constructor(public auth: AuthService) { }
+  error = {
+    server: '',
+    login: '',
+    checkPassword: '',
+    password: ''
+  }
+
+  constructor(private formBuilder: FormBuilder, public usersService: UsersService, public authService: AuthService) { }
 
   ngOnInit(): void {
-    this.auth.getUser(this.auth.getUserDetails()).subscribe(user => {
+    this.usersService.getUserById(this.authService.getUserDetails()._id).subscribe(user => {
       this.user = user;
+      this.editForm = this.formBuilder.group({
+        _id: [''],
+        login: ['', Validators.required],
+        checkPassword: ['', Validators.required],
+        password: [''],
+        family: [''],
+        age: [''],
+      });
+      this.editForm.patchValue(this.user);
     }, (err) => {
       console.error(err);
+    });
+
+  }
+
+  onSubmit()
+  {
+    this.usersService.editUser(this.editForm.value).subscribe(user => {
+      this.user = user;
+      this.editable = false;
+
+      Object.keys(this.error).forEach(v => this.error[v] = '');
+    }, (err) => {
+      err.error.errortype === 'login' ? this.error.login = err.error.err : 0;
+      err.error.errortype === 'password' ? this.error.password = err.error.err : 0;
+      err.error.errortype === 'checkPassword' ? this.error.checkPassword = err.error.err : 0;
     });
   }
 }
