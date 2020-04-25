@@ -14,6 +14,7 @@ import { ListComponent } from './users/list/list.component';
 import { AuthService } from './services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { FriendsListComponent } from './users/friends/friends-list/friends-list.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
   { path: 'auth/signin', component: SigninComponent},
   { path: 'users/profile', component: ProfileComponent, canActivate: [AuthGuardService]},
   { path: 'users/list', component: ListComponent},
+  { path: 'users/friends/friendslist', component: FriendsListComponent},
 ]
 
 @NgModule({
@@ -32,6 +34,7 @@ const appRoutes: Routes = [
     ProfileComponent,
     ListComponent,
     HomeComponent,
+    FriendsListComponent,
   ],
   imports: [
     BrowserModule,

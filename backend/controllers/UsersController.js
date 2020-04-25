@@ -11,12 +11,6 @@ const userService = require('../service/userService');
 //adding model
 const User = require('../models/User');
 
-//friends parts
-//getFriends
-router.get('/friends', (req, res) => {
-    userService.getFriends(req, res);
-});
-
 //getAllUsers
 router.get('/', (req, res) => {
     userService.getAllUsers(req, res);

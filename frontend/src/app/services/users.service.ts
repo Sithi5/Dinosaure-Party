@@ -30,7 +30,8 @@ export class UsersService {
     }
     else if (method === 'post')
     {
-      return this.http.post(url + type + `${id}`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` }});
+      console.log(`Bearer ${this.auth.getToken()}`);
+      return this.http.post(url + `${type}` + `${id}`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` }});
     }
     else if (method === 'delete')
     {
@@ -50,7 +51,18 @@ export class UsersService {
     return this.request('get', '/users/', null, id);
   }
 
+  public getFriends(): Observable<any> {
+    return this.request('get', '/friends/');
+  }
+
+  public addFriend(id: string): Observable<any> {
+    console.log('trying to add friend');
+    return this.request('post', '/friends/', null, id);
+
+  }
+
   public getAllUsers(): Observable<any> {
+    console.log('trying to get all users');
     return this.request('get', '/users/');
   }
 

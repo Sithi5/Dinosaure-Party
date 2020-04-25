@@ -12,6 +12,7 @@ var passport = require('passport'),
 
 //controllers
 const UsersController = require('./controllers/UsersController.js');
+const FriendsController = require('./controllers/FriendsController.js');
 const AuthController = require('./controllers/AuthController.js');
 
 
@@ -49,14 +50,13 @@ passport.use(new LocalStrategy({
 
 app.use('/auth', AuthController);
 app.use('/users', auth, UsersController);
-app.use('/test', (req, res) => {
-    console.log('requete bien recu !');
-    console.log(req);
-});
+app.use('/friends', auth, FriendsController);
 
 // Catch unauthorised errors
 app.use(function(err, req, res, next) {
     if (err.name === 'UnauthorizedError') {
+        console.log('UnauthorizedError');
+        console.log(req.originalUrl);
         res.status(401);
         res.json({ "message": err.name + ": " + err.message });
     }

@@ -15,7 +15,7 @@ function checkIfAdmin(req, res) {
     console.log(req.payload);
 
     // If no user ID exists in the JWT return a 401
-    if (!req.payload._id || req.payload.admin === false) {
+    if (!req.payload._id || !req.payload.admin || req.payload.admin === false) {
         console.log('false');
         return (false);
     }
@@ -122,6 +122,7 @@ function getOneUser(req, res) {
 
 
 function getAllUsers(req, res) {
+    console.log('trying to get all users');
     User.find((err, docs) => {
         if (err) {
             return sendError(req, res, err);
@@ -189,14 +190,45 @@ function updateOneUser(req, res) {
     });
 }
 
+function addFriend(req, res) {
+    if (!ObjectId.isValid(req.params.id)) {
+        return (res.status(400).send('No record with given id : ' + req.params.id));
+    }
+    if (!ObjectId.isValid(req.payload._id)) {
+        return (res.status(400).send('No record with given id : ' + req.payload._id));
+    }
+    User.findById(req.payload._id, (err, user) => {
+        if (!err) {
+            if (!user.friends.includes(req.params.id) && user.id != req.params.id) {
+                user.friends.push(req.params.id);
+            }
+            user.save(function(err) {
+                if (err) {
+                    return sendError(req, res, err);
+                } else {
+                    res.status(200);
+                    res.send(user.friends);
+                }
+            });
+        } else {
+            return sendError(req, res, err);
+        }
+    });
+}
+
 function getFriends(req, res) {
     console.log('trying to get friends');
-
-    User.findById(req.payload._id, (err, docs) => {
+    if (!ObjectId.isValid(req.payload._id)) {
+        return (res.status(400).send('No record with given id : ' + req.payload._id));
+    }
+    User.findById(req.payload._id, (err, user) => {
         if (!err) {
-            var friends = array();
-            docs.friends.forEach(element => {});
-            return res.status(200).send(docs);
+            var friends = [];
+            user.friends.forEach(element => {
+                friends.push(element);
+            });
+
+            return res.status(200).send(friends);
         } else {
             return sendError(req, res, err);
         }
@@ -211,6 +243,7 @@ module.exports.deleteOneUser = deleteOneUser;
 module.exports.deleteAllUsers = deleteAllUsers;
 module.exports.updateOneUser = updateOneUser;
 module.exports.getFriends = getFriends;
+module.exports.addFriend = addFriend;
 
 //error 400 = badrequest
 //error 404 = Not found

@@ -1,6 +1,6 @@
 <p *ngIf="!authService.isLoggedIn()">Vous devez vous connecter pour voir les autres dinosaures</p>
-<p *ngIf="authService.isLoggedIn() && !users">Pas de dinausaures en vue</p>
-<div *ngIf="authService.isLoggedIn() && users">
+<p *ngIf="authService.isLoggedIn() && (!users || users.length <= 0)">Pas de dinausaures en vue</p>
+<div *ngIf="authService.isLoggedIn() && users && users.length > 0">
     <div *ngFor="let user of users; let index = index">
         <div *ngIf="isOthersUsersAndNotFriend(user)">
             <div class="container register-form">
@@ -19,6 +19,10 @@
                             <div class="list-group">
                                 <p *ngIf="user.food">La nourriture qu'il aime : {{ user.food}}</p>
                             </div>
+                            <div class="list-group">
+                                <button class="btn btn-success" (click)="addToFriends(user)">Ajouter en amis</button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
