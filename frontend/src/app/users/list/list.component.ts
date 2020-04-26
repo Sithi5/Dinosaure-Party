@@ -94,4 +94,9 @@ export class ListComponent implements OnInit {
     });
   }
 
+  getProfilPic(user)
+  {
+    return this.usersService.getUserProfilePicUrl(user);
+  }
+
 }

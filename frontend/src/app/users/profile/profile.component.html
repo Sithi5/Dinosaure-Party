@@ -5,24 +5,27 @@
     <div class="container register-form">
         <div class="text-center" style="color: #757575;">
             <div class="card-register">
-                <h5 class="card-header info-color white-text text-center py-4">
-                    <strong>Ton profil</strong>
-                </h5>
+                <h1 class="card-header info-color white-text text-center py-4">
+                    <strong>{{ user?.login }}</strong>
+
+                </h1>
                 <div class="card-body px-lg-5 pt-0">
+                    <img [src]="getProfilPic()" style="width: 250px; height: 250px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="list-group">
-                        <p *ngIf="user._id">Ton id : {{ user._id}}</p>
+                        <h5 *ngIf="user.family">Ta famille : {{ user?.family}}</h5>
+                        <h5 *ngIf="!user.family">Selectionne ta famille pour changer d'apparance!</h5>
                     </div>
                     <div class="list-group">
-                        <p>Ton login : {{ user.login}}</p>
+                        <h5 *ngIf="user.race">Ta race : {{ user?.race}}</h5>
                     </div>
                     <div class="list-group">
-                        <p *ngIf="user.family">Ta famille : {{ user.family}}</p>
+                        <h5 *ngIf="user.age">Ton age : {{ user?.age}} ans</h5>
                     </div>
                     <div class="list-group">
-                        <p *ngIf="user.age">Ton age : {{ user.age}}</p>
+                        <h5 *ngIf="user.food">La nourriture que tu aime : {{ user?.food}}</h5>
                     </div>
                     <div class="list-group">
-                        <p *ngIf="user.food">La nourriture que tu aime : {{ user.food}}</p>
+                        <h5 *ngIf="user.color">Ta couleur : {{ user?.color}}</h5>
                     </div>
                     <button type="submit" class="btn btn-danger" (click)="editable=true;">Modifier mon profil</button>
 
@@ -56,7 +59,7 @@
 
                             <div class="form-part label-float">
 
-                                <label for="checkPassword">Votre mot de passe:</label>
+                                <label for="checkPassword">*Votre mot de passe:</label>
                                 <input type="password" formControlName="checkPassword" placeholder="mot de passe" name="checkPassword" class="form-control" id="checkPassword">
                                 <div class="form-error">
                                     <p>{{ error.checkPassword }}</p>
@@ -74,10 +77,36 @@
                                 <label for="age">Age:</label>
                                 <input type="number" formControlName="age" placeholder="age" name="age" class="form-control" id="age">
                             </div>
+                            <div class="form-part form-gender">
+                                <label for="family">Ta famille:</label>
+                                <select formControlName="family" class="form-control">
+                                    <option value="Tyrannosaures">Tyrannosaures</option>
+                                    <option value="Sauropodes">Sauropodes</option>
+                                    <option value="Cératopsiens">Cératopsiens</option>
+                                    <option value="Raptors">Raptors</option>
+                                    <option value="Théropodes">Théropodes</option>
+                                    <option value="Titanosaures">Titanosaures</option>
+                                    <option value="Ankylosaures">Ankylosaures</option>
+                                    <option value="Ornithopodes">Ornithopodes</option>
+                                </select>
+                            </div>
+                            <div class="form-part label-float">
+                                <label for="race">Ta race:</label>
+                                <input type="text" formControlName="race" placeholder="race" name="race" class="form-control" id="password">
+
+                            </div>
+                            <div class="form-part form-gender">
+                                <label for="food">Ta nourriture:</label>
+                                <select formControlName="food" class="form-control">
+                                    <option value="bacon">Du bacon</option>
+                                    <option value="humains">Des humains</option>
+                                    <option value="plantes">Des plantes</option>
+                                </select>
+                            </div>
 
                         </div>
-                        <button type="submit" class="btn btn-danger" (click)="editable=false;">Voir mon profil</button>
-                        <button class="btn btn-success">Enregistrer changement</button>
+                        <p class="btn btn-warning" style="margin-left: 20px; margin-top: 20px;" (click)="editable=false;">Voir mon profil</p>
+                        <button class="btn btn-success" style="margin-left: 20px;">Enregistrer changement</button>
                     </form>
                 </div>
             </div>

@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
 
   getProfilPic()
   {
-    return this.usersService.getUserProfilePicUrl(this.user);
+    return this.usersService.getUserProfilePicUrl(this?.user);
   }
 
 }

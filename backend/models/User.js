@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
     },
     family: {
         type: String,
+        enum: ['Tyrannosaures', 'Sauropodes', 'Cératopsiens', 'Raptors', 'Théropodes', 'Titanosaures', 'Ankylosaures', 'Ornithopodes'],
         required: false,
     },
     race: {
@@ -30,7 +31,12 @@ const userSchema = new mongoose.Schema({
     },
     food: {
         type: String,
-        enum: ['bacon', 'human', 'plant'],
+        enum: ['bacon', 'humains', 'plantes'],
+        required: false,
+    },
+    color: {
+        type: String,
+        enum: ['bleu', 'blanc', 'rouge'],
         required: false,
     },
     friends: {

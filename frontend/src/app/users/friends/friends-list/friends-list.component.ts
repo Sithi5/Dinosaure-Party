@@ -64,4 +64,9 @@ export class FriendsListComponent implements OnInit {
     });
   }
 
+  getProfilPic(user)
+  {
+    return this.usersService.getUserProfilePicUrl(user);
+  }
+
 }

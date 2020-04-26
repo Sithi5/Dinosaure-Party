@@ -134,7 +134,8 @@ function getAllUsers(req, res) {
 };
 
 function deleteOneUser(req, res) {
-    if (checkIfAdmin(req, res) !== true) {
+    console.log('trying to delete an user');
+    if (checkIfAdmin(req, res) !== true && checkIfSameUser(req, res) !== true) {
         return sendError(req, res, 'you need to be admin to see this.');
     }
     if (!ObjectId.isValid(req.params.id)) {
