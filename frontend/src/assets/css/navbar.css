@@ -1,7 +1,9 @@
 .nav-btn-sign-in,
 .nav-btn-loggout,
 .nav-btn-sign-out {
-    text-decoration: underline;
+    border-color: rgb(3, 100, 24) !important;
+    color: rgb(3, 100, 24) !important;
+    margin-left: 10px;
 }
 
 .nav-link-green {
@@ -56,7 +58,7 @@
     max-width: 286px;
     top: 100%;
     right: 0;
-    left: auto;
+    left: auto !important;
     background-color: #f8f9fa !important;
     border: none !important;
     font-size: 15px;

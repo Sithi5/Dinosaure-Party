@@ -21,25 +21,20 @@ export class UsersService {
     {
       if (typeof(id) !== 'undefined')
       {
-        return this.http.get(url + `${type}` + `${id}`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` }});
+        return this.http.get(url + `${type}` + `${id}`);
       }
       else
       {
-        return this.http.get(url + `${type}`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` }});
+        return this.http.get(url + `${type}`);
       }
-    }
-    else if (method === 'post')
-    {
-      console.log(`Bearer ${this.auth.getToken()}`);
-      return this.http.post(url + `${type}` + `${id}`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` }});
     }
     else if (method === 'delete')
     {
-      return this.http.delete(url + `${type}` + `${id}`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` }});
+      return this.http.delete(url + `${type}` + `${id}`);
     }
     else if (method === 'put')
     {
-      return this.http.put(url + `${type}` + `${id}`, user, { headers: { Authorization: `Bearer ${this.auth.getToken()}` }});
+      return this.http.put(url + `${type}` + `${id}`, user);
     }
   }
 
@@ -57,8 +52,12 @@ export class UsersService {
 
   public addFriend(id: string): Observable<any> {
     console.log('trying to add friend');
-    return this.request('post', '/friends/', null, id);
+    return this.request('get', '/friends/', null, id);
+  }
 
+  public removeFriend(id: string): Observable<any> {
+    console.log('trying to remove friend');
+    return this.request('delete', '/friends/', null, id);
   }
 
   public getAllUsers(): Observable<any> {
@@ -66,4 +65,13 @@ export class UsersService {
     return this.request('get', '/users/');
   }
 
+  public getUserProfilePicUrl(user: User)
+  {
+    if (!user.family)
+    {
+      return ("assets\\img\\dinosaure-2.png");
+    }
+    return ("assets\\img\\dinosaure-1.png");
+
+  }
 }

@@ -8,25 +8,56 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li *ngIf="auth.isLoggedIn()" class="nav-item active" routerLinkActive="active">
-                <a class="nav-link nav-link-green-first" routerLink="/users/profile">Mon profil</a>
+                <a class="nav-link nav-link-green" routerLink="/users/profile">Mon profil</a>
             </li>
             <li *ngIf="auth.isLoggedIn()" class="nav-item active" routerLinkActive="active">
-                <a class="nav-link nav-link-green-first" routerLink="/users/friends/friendslist">Mes amis</a>
+                <a class="nav-link nav-link-green" routerLink="/users/friends/friendslist">Mes amis</a>
             </li>
             <li class="nav-item active" routerLinkActive="active">
-                <a class="nav-link nav-link-green-first" routerLink="/users/list">Autour de moi</a>
+                <a class="nav-link nav-link-green" routerLink="/users/list">Autour de moi</a>
             </li>
         </ul>
         <!-- item navbar to the right -->
         <ul class="navbar-nav ml-auto">
             <li *ngIf="!auth.isLoggedIn()" class="nav-item active" routerLinkActive="active">
-                <a class="nav-link nav-link-green nav-btn-loggout" routerLink="auth/signup">crée un compte</a>
+                <a class="btn nav-btn-loggout" routerLink="auth/signup">crée un compte</a>
             </li>
             <li *ngIf="!auth.isLoggedIn()" class="nav-item active" routerLinkActive="active">
-                <a class="nav-link nav-link-green nav-btn-sign-in" routerLink="auth/signin">connection</a>
+                <a class="btn nav-btn-sign-in" routerLink="auth/signin">connection</a>
             </li>
             <li *ngIf="auth.isLoggedIn()" class="nav-item active" routerLinkActive="active">
-                <a class="nav-link nav-link-green nav-btn-sign-out" routerLink="auth/loggout" (click)="auth.logout()">déconnection</a>
+                <div class="dropdown">
+                    <!-- img of user trigger the dropdown menu -->
+                    <img [src]="getProfilPic()" class="dropdown-toggle img-dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="card card-user">
+                            <div class="card-body text-center">
+                                <div class="header-card-div">
+                                    <ul class="menu-user">
+                                        <img [src]="getProfilPic()" class="img-card-body" type="button" routerLink="/users/profile">
+                                    </ul>
+                                    <ul class="menu-user">
+                                        <p class="card-title text-user-card-title">{{ user?.login}}</p>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <a class="text-user-card" routerLink="/users/friends/friendslist">Mes amis</a>
+                            </div>
+                            <div class="card-body text-center">
+                                <a class="text-user-card" routerLink="/users/friends/friendslist">Mon profil </a>
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="row text-center">
+                                    <div class="col-sm">
+                                        <a class="btn nav-btn-sign-out" routerLink="auth/loggout" (click)="auth.logout()">déconnection</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>

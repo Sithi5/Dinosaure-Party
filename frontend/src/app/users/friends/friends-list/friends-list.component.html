@@ -1,22 +1,33 @@
-<p *ngIf="!authService.isLoggedIn()">Vous devez vous connecter pour voir les autres dinosaures</p>
-<p *ngIf="authService.isLoggedIn() && (!friends || friends.length <= 0)">Vous n'avez pas encore d'amis</p>
-<div *ngIf="authService.isLoggedIn() && friends && friends.length > 0">
-    <div *ngFor="let user of friends; let index = index">
-        <div class="container register-form">
-            <div class="text-center" style="color: #757575;">
-                <div class="card-register">
-                    <div class="card-body px-lg-5 pt-0">
-                        <div class="list-group">
-                            <p>login : {{ user.login}}</p>
-                        </div>
-                        <div class="list-group">
-                            <p *ngIf="user.family">famille : {{ user.family}}</p>
-                        </div>
-                        <div class="list-group">
-                            <p *ngIf="user.age">age : {{ user.age}}</p>
-                        </div>
-                        <div class="list-group">
-                            <p *ngIf="user.food">La nourriture qu'il aime : {{ user.food}}</p>
+<div *ngIf="async === 1">
+
+    <div *ngIf="authService.isLoggedIn() && (!friends || friends.length <= 0)" class="container text-center">
+        <section class="index-section-1">
+            <div class="index-section-1-div-1">
+                <h2 class="Text-Pink h2">Vous n'avez pas encore d'amis</h2>
+                <h3 class="h3">Ajoutez-en en regardant autour de vous !</h3>
+                <img src="assets\gif\dinosaure-gif-2.gif" alt="matcha-logo" style="width:250px;">
+            </div>
+        </section>
+    </div>
+    <div *ngIf="authService.isLoggedIn() && friends && friends.length > 0">
+        <div *ngFor="let user of friends; let index = index">
+            <div class="container register-form">
+                <div class="text-center" style="color: #757575;">
+                    <div class="card-register">
+                        <div class="card-body px-lg-5 pt-0">
+                            <div class="list-group">
+                                <p>login : {{ user.login}}</p>
+                            </div>
+                            <div class="list-group">
+                                <p *ngIf="user.family">famille : {{ user.family}}</p>
+                            </div>
+                            <div class="list-group">
+                                <p *ngIf="user.age">age : {{ user.age}}</p>
+                            </div>
+                            <div class="list-group">
+                                <p *ngIf="user.food">La nourriture qu'il aime : {{ user.food}}</p>
+                            </div>
+                            <button class="btn btn-danger" (click)="removeFromFriends(user)">Enlever de mes amis</button>
                         </div>
                     </div>
                 </div>

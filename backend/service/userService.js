@@ -216,6 +216,33 @@ function addFriend(req, res) {
     });
 }
 
+function removeFriend(req, res) {
+    if (!ObjectId.isValid(req.params.id)) {
+        return (res.status(400).send('No record with given id : ' + req.params.id));
+    }
+    if (!ObjectId.isValid(req.payload._id)) {
+        return (res.status(400).send('No record with given id : ' + req.payload._id));
+    }
+    User.findById(req.payload._id, (err, user) => {
+        if (!err) {
+            var index;
+            if ((index = user.friends.indexOf(req.params.id)) !== -1) {
+                user.friends.splice(index, 1);
+            }
+            user.save(function(err) {
+                if (err) {
+                    return sendError(req, res, err);
+                } else {
+                    res.status(200);
+                    res.send(user.friends);
+                }
+            });
+        } else {
+            return sendError(req, res, err);
+        }
+    });
+}
+
 function getFriends(req, res) {
     console.log('trying to get friends');
     if (!ObjectId.isValid(req.payload._id)) {
@@ -244,7 +271,7 @@ module.exports.deleteAllUsers = deleteAllUsers;
 module.exports.updateOneUser = updateOneUser;
 module.exports.getFriends = getFriends;
 module.exports.addFriend = addFriend;
-
+module.exports.removeFriend = removeFriend;
 //error 400 = badrequest
 //error 404 = Not found
 //status 200 = ok

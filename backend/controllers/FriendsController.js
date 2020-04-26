@@ -17,9 +17,14 @@ router.get('/', (req, res) => {
     userService.getFriends(req, res);
 });
 
-router.post('/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     console.log('trying to add friend');
     userService.addFriend(req, res);
+});
+
+router.delete('/:id', (req, res) => {
+    console.log('trying to remove friend');
+    userService.removeFriend(req, res);
 });
 
 module.exports = router;

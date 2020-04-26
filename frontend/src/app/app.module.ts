@@ -7,7 +7,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { HeaderComponent } from './header/header.component';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { HttpClientModule} from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileComponent } from './users/profile/profile.component';
 import { ListComponent } from './users/list/list.component';
@@ -15,6 +15,7 @@ import { AuthService } from './services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { FriendsListComponent } from './users/friends/friends-list/friends-list.component';
+import { JwtInterceptor } from './_helper/jwt.interceptor';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -47,6 +48,11 @@ const appRoutes: Routes = [
   providers: [
     AuthService,
     AuthGuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
