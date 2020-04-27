@@ -10,7 +10,7 @@
 
                 </h1>
                 <div class="card-body px-lg-5 pt-0">
-                    <img [src]="getProfilPic()" style="width: 250px; height: 250px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img [src]="getProfilPic()" style="width: 250px; height: 250px;">
                     <div class="list-group">
                         <h5 *ngIf="user.family">Ta famille : {{ user?.family}}</h5>
                         <h5 *ngIf="!user.family">Selectionne ta famille pour changer d'apparance!</h5>

@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators/';
 import { Router } from '@angular/router';
 import { User } from "../models/user.model";
 import { AuthService } from "./auth.service";
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

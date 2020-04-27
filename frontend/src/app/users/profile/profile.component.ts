@@ -41,7 +41,6 @@ export class ProfileComponent implements OnInit {
     }, (err) => {
       console.error(err);
     });
-
   }
 
   onSubmit()
@@ -67,7 +66,8 @@ export class ProfileComponent implements OnInit {
   {
     return this.usersService.deleteUser(this.user).subscribe(() =>
     {
-      this.router.navigateByUrl('/users/profile');
+      this.authService.logout();
+      this.router.navigateByUrl('/');
     }, (err) => {
       console.error(err);
     });;
