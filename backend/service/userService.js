@@ -63,7 +63,7 @@ function login(req, res) {
 
 function userHydrate(user, req) {
     var err;
-    user.login = req.body.login
+    user.login = req.body.login;
     if ((err = user.checkPasswordStrong(req.body.password)) !== null) {
         return (err);
     }

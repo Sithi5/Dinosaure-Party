@@ -14,11 +14,14 @@ export class HeaderComponent implements OnInit {
   constructor(public auth: AuthService, public usersService: UsersService) { }
 
   ngOnInit(): void {
-    this.usersService.getUserById(this.auth.getUserDetails()._id).subscribe(user => {
-      this.user = user;
-    }, (err) => {
-      console.error(err);
-    });
+    if (this.auth.isLoggedIn())
+    {
+      this.usersService.getUserById(this.auth.getUserDetails()._id).subscribe(user => {
+        this.user = user;
+      }, (err) => {
+        console.error(err);
+      });
+    }
   }
 
   getProfilPic()
