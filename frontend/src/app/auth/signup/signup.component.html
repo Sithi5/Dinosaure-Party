@@ -13,7 +13,7 @@
                             <input type="text" class="form-control" name="login" placeholder="Votre login" [(ngModel)]="credentials.login">
 
                             <div class="form-error">
-                                <p>{{ error.login }}</p>
+                                <p class="text-danger">{{ error.login }}</p>
                             </div>
                         </div>
                         <label for="password">Votre mot de passe</label>
@@ -23,7 +23,7 @@
                             <input type="password" class="form-control" name="password" placeholder="Votre mot de passe" [(ngModel)]="credentials.password">
 
                             <div class="form-error">
-                                <p>{{ error.password }}</p>
+                                <p class="text-danger">{{ error.password }}</p>
                             </div>
                         </div>
                     </div>
