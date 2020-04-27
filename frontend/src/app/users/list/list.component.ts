@@ -19,6 +19,10 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
 
+    setTimeout(()=>
+    {
+      this.async = 1;
+    }, 250);
 
     //getting all users to print
     this.usersService.getAllUsers().subscribe(users => {
@@ -59,10 +63,7 @@ export class ListComponent implements OnInit {
       console.error(err);
     });
 
-    setTimeout(()=>
-    {
-      this.async = 1;
-    }, 250);
+
   }
 
   isNotMe(user)
