@@ -108,6 +108,28 @@ function register(req, res) {
     });
 };
 
+function registerAFriend(req, res) {
+    var user = new User();
+    var err;
+
+    if ((err = userHydrate(user, req)) !== null) {
+        return sendError(req, res, err, 'password');
+    }
+    console.log('trying to save new user');
+    user.save(function(err) {
+        if (err) {
+            console.log('A problem occured when trying to add the user');
+            if (err.code === 11000) {
+                return sendError(req, res, 'Le login est deja pris', 'login');
+            }
+            return sendError(req, res, err);
+        }
+        console.log('user successfully added, sending the user');
+        console.log(user);
+        return res.status(200).send(user);
+    });
+};
+
 function getOneUser(req, res) {
     if (!ObjectId.isValid(req.params.id)) {
         return (res.status(400).send('No record with given id : ' + req.params.id));
@@ -273,6 +295,7 @@ module.exports.updateOneUser = updateOneUser;
 module.exports.getFriends = getFriends;
 module.exports.addFriend = addFriend;
 module.exports.removeFriend = removeFriend;
+module.exports.registerAFriend = registerAFriend;
 //error 400 = badrequest
 //error 404 = Not found
 //status 200 = ok

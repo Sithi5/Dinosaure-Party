@@ -89,6 +89,10 @@ export class AuthService {
     return this.request('post', '/auth/signup', user);
   }
 
+  public registerAFriend(user: TokenPayload): Observable<any> {
+    return this.request('post', '/auth/signupAFriend', user);
+  }
+
   public login(user: TokenPayload): Observable<any> {
     return this.request('post', '/auth/signin', user);
   }

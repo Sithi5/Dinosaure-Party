@@ -45,6 +45,11 @@ router.post('/signup', (req, res) => {
     userService.register(req, res);
 });
 
+router.post('/signupAFriend', (req, res) => {
+    console.log('trying to sign up a friend!');
+    userService.registerAFriend(req, res);
+});
+
 
 
 module.exports = router;

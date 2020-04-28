@@ -16,6 +16,9 @@
             <li class="nav-item active" routerLinkActive="active">
                 <a class="nav-link nav-link-green" routerLink="/users/list">Autour de moi</a>
             </li>
+            <li *ngIf="auth.isLoggedIn()" class="nav-item active" routerLinkActive="active">
+                <a class="nav-link nav-link-green" routerLink="/users/friends/create-new-friend">Enregistrer un amis</a>
+            </li>
         </ul>
         <!-- item navbar to the right -->
         <ul class="navbar-nav ml-auto">
@@ -47,7 +50,9 @@
                             <div class="card-body text-center">
                                 <a class="text-user-card" routerLink="/users/profile">Mon profil </a>
                             </div>
-
+                            <div class="card-body text-center">
+                                <a class="text-user-card" routerLink="/users/friends/create-new-friend">Enregistrer un amis</a>
+                            </div>
                             <div class="card-footer">
                                 <div class="row text-center">
                                     <div class="col-sm">

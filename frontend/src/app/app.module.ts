@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { FriendsListComponent } from './users/friends/friends-list/friends-list.component';
 import { JwtInterceptor } from './_helper/jwt.interceptor';
+import { CreateNewFriendComponent } from './create-new-friend/create-new-friend.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -23,7 +24,8 @@ const appRoutes: Routes = [
   { path: 'auth/signin', component: SigninComponent},
   { path: 'users/profile', component: ProfileComponent, canActivate: [AuthGuardService]},
   { path: 'users/list', component: ListComponent},
-  { path: 'users/friends/friendslist', component: FriendsListComponent},
+  { path: 'users/friends/friendslist', component: FriendsListComponent, canActivate: [AuthGuardService]},
+  { path: 'users/friends/create-new-friend', component: CreateNewFriendComponent, canActivate: [AuthGuardService]},
 ]
 
 @NgModule({
@@ -36,6 +38,7 @@ const appRoutes: Routes = [
     ListComponent,
     HomeComponent,
     FriendsListComponent,
+    CreateNewFriendComponent,
   ],
   imports: [
     BrowserModule,
